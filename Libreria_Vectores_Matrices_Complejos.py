@@ -2,7 +2,7 @@
 # Carrera / Semestre: Ingeniería de Sistemas / 4to Semestre
 # Asignatura: Ciencias Naturales y Tecnología (CNYT) 
 # Nombre: Jesús Alfonso Pinzón Vega
-# Fecha: 2023/08/31
+# Fecha: 2023/09/06
 
 # Librería de Operaciones con Vectores y Matrices Complejos
 
@@ -12,9 +12,12 @@ from numpy import *
 def cplx_vect_sum(v1,v2):
     """Calcula y devuelve la suma de dos vectores complejos
     (1D array, 1D array) -> 1D array"""
-    v1,v2 = array(v1),array(v2),
-    vr = v1 + v2
-    return vr
+    try:
+        v1,v2 = array(v1),array(v2)
+        vr = v1 + v2
+        return vr
+    except:
+        return "Los vectores NO son compatibles"
 
 
 def cplx_vect_add_inver(v):
@@ -27,7 +30,7 @@ def cplx_vect_add_inver(v):
 
 def cplx_vect_scal_mult(c,v):
     """Calcula y devuelve la multiplicación de un escalar por un vector complejo
-    (complex or int ot float, 1D array) -> 1D array"""
+    (int or float or complex, 1D array) -> 1D array"""
     v = array(v)
     vr = c*v
     return vr
@@ -36,9 +39,12 @@ def cplx_vect_scal_mult(c,v):
 def cplx_mtx_sum(m1,m2):
     """Calcula y devuelve la suma de matrices complejas
     (2D array, 2D array) -> 2D array"""
-    m1,m2 = array(m1),array(m2)
-    mr = m1 + m2
-    return mr
+    try:
+        m1,m2 = array(m1),array(m2)
+        mr = m1 + m2
+        return mr
+    except:
+        return "Las matrices NO son compatibles"
 
 
 def cplx_mtx_add_inver(m):
@@ -51,7 +57,7 @@ def cplx_mtx_add_inver(m):
 
 def cplx_mtx_scal_mult(c,m):
     """Calcula y devuelve la multiplicación de un escalar por una matriz compleja
-    (complex or int ot float, 1D array) -> 1D array"""
+    (int ot float or complex, 1D array) -> 1D array"""
     m = array(m)
     mr = c*m
     return mr
@@ -68,7 +74,7 @@ def cplx_vct_mtx_conj(vm):
     """Calcula y devuelve el conjugado de un vector o matriz complejos
     (1D array or 2D array) -> 1D array or 2D array"""
     vm = array(vm)
-    vmc = vm.conjugate()
+    vmc = conjugate(vm)
     return vmc
 
 
@@ -76,5 +82,102 @@ def cplx_vct_mtx_adj(vm):
     """Calcula y devuelve la adjunta (daga) de un vector o matriz complejos
     (1D array or 2D array) -> 1D array or 2D array"""
     vm = array(vm)
-    vma = transpose(vm.conjugate())
+    vma = transpose(conjugate(vm))
     return vma
+
+
+def cplx_mtx_prod(m1,m2):
+    """Calcula y devuelve el producto de dos matrices complejas
+    (2D array, 2D array) -> 2D array"""
+    try: 
+        m1,m2 = array(m1),array(m2)
+        mr = dot(m1,m2)
+        return mr
+    except:
+        return "Las matrices NO son compatibles"
+        
+        
+def cplx_vct_mtx_act(m,v):
+    """Calcula y devuelve la acción de una matriz compleja sobre un vector complejo
+    (2D array, 1D array) -> 1D array"""
+    try:
+        m,v = array(m),array(v)
+        vma = dot(m,v)
+        return vma
+    except:
+        return "La matriz y el vector NO son compatibles"
+
+
+def cplx_vct_mtx_inter_prod(vm1,vm2):
+    """Calcula y devuelve el producto interno de dos vectores o matrices complejos
+    (1D array, 1D array or 2D array, 2D array) -> 1D array or 2D array or int or float"""
+    try:
+        vm1,vm2 = array(vm1),array(vm2)
+        d1 = vm1.ndim
+        d2 = vm2.ndim
+        if d1 == 1 == d2:
+            vip = dot(cplx_vct_mtx_adj(vm1),vm2)
+            return vip
+        elif vm1.shape[0] == vm2.shape[0]:
+            mip = trace(dot(cplx_vct_mtx_adj(vm1),vm2))
+            return mip
+        else:
+            return "Los vectores o matrices NO son compatibles"
+    except:
+        return "Los vectores o matrices NO son compatibles"
+        
+        
+def cplx_vct_mtx_norm(vm):
+    """Calcula y devuelve la norma de un vector o matriz complejos
+    (1D array or 2D array) -> int or float"""
+    vm = array(vm)
+    vmn = linalg.norm(vm)
+    return(vmn)
+    
+
+def cplx_vct_mtx_dist(vm1,vm2):
+    """Calcula y devuelve la distancia entre dos vectores o matrices complejos
+    (1D array, 1D array or 2D array, 2D array) -> int or float"""
+    vm1,vm2 = array(vm1),array(vm2)
+    dist = linalg.norm(vm1-vm2)
+    return dist
+
+ 
+def cplx_mtx_val_vect(m):
+    """Calcula y devuelve los valores y vectores propios de una matriz compleja
+    (2D array) -> 1D array, 2D array"""
+    m = array(m)
+    val,vect = linalg.eig(m)
+    return val,vect
+
+
+def cplx_unt_mtx(m):
+    """Indica si una matriz compleja es unitaria
+    (2D array) -> True or False"""
+    m = array(m)
+    a,b = m.shape
+    if a == b:
+        unit = [list(x) for x in dot(m,cplx_vct_mtx_adj(m))]
+        ident = [list(x) for x in identity(a)]
+        if  unit == ident :
+            return True
+        else:
+            return False
+    else:
+        return "La matriz No es cuadrada"
+
+
+def cplx_herm_mtx(m):
+    """Indica si una matriz compleja es hermitiana
+    (2D array) -> True or False"""
+    m = array(m)
+    a,b = m.shape
+    if a == b:
+        hm = [list(x) for x in m]
+        hmt = [list(x) for x in cplx_vct_mtx_adj(m)]
+        if  hm == hmt:
+            return True
+        else:
+            return False
+    else:
+        return "La matriz No es cuadrada"
