@@ -202,7 +202,7 @@ A continuación se muestra un ejemplo de ejecución de cada función en [IDLE](h
 ```  
     
     
-#### Textos y Wikis 📖
+## Textos y Wikis 📖
 ---
 Para mayor información sobre los temas descritos en este proyecto se recomienda revisar los siguientes enlaces:
 
