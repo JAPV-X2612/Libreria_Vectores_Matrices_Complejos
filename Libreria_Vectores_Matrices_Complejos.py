@@ -181,3 +181,45 @@ def cplx_herm_mtx(m):
             return False
     else:
         return "La matriz No es cuadrada"
+    
+
+def cplx_vct_mtx_tens_prod(vm1,vm2):
+    """Calcula y devuelve el producto tensorial entre dos vectores y/o matrices complejos
+    (1D array or 2D array, 1D array or 2D array) -> 1D array or 2D array"""
+    vm1,vm2 = array(vm1),array(vm2)
+    d1,d2 = vm1.ndim,vm2.ndim
+    
+    if d1 == 1 and d2 == 1:
+        a,b = vm1.shape[0],1
+        c,d = vm2.shape[0],1
+    elif d1 == 1 and d2 == 2:
+        a,b = vm1.shape[0],1
+        c,d = vm2.shape
+    elif d1 == 2 and d2 == 1:
+        a,b = vm1.shape
+        c,d = vm2.shape[0],1
+    else:
+        a,b = vm1.shape
+        c,d = vm2.shape
+    
+    m,n = a*c,b*d
+    vmtp = full((m,n),0+0j)
+    
+    if d1 == 1 and d2 == 1:
+        for j in range(m):
+            for k in range(n):
+                vmtp[j,k] = vm1[j//c]*vm2[j%c]
+    elif d1 == 1 and d2 == 2:
+        for j in range(m):
+            for k in range(n):
+                vmtp[j,k] = vm1[j//c]*vm2[j%c,k%d]
+    elif d1 == 2 and d2 == 1:
+        for j in range(m):
+            for k in range(n):
+                vmtp[j,k] = vm1[j//c,k//d]*vm2[j%c]
+    else:
+        for j in range(m):
+            for k in range(n):
+                vmtp[j,k] = vm1[j//c,k//d]*vm2[j%c,k%d]
+    
+    return vmtp
