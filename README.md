@@ -213,7 +213,7 @@ Para mayor información sobre los temas descritos en este proyecto se recomienda
 
 ## Autor ✒️
 ---
-Este proyecto es de la autoría de ***Jesús Alfonso Pinzón Vega***, Ingeniero de Sistemas de la Escuela Colombiana de Ingeniería Julio Garavito ([ECIJG](https://www.escuelaing.edu.co/es/)). 
+Este proyecto es de la autoría de ***Jesús Alfonso Pinzón Vega***, Ingeniero de Sistemas de la Escuela Colombiana de Ingeniería Julio Garavito ([ECIJG](https://www.escuelaing.edu.co/es/)).  
 **Correo:** jesus.pinzon-v@mail.escuelaing.edu.co
 
 ## Licencia 📄
