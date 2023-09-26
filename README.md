@@ -1,4 +1,4 @@
-# Librería de Números Complejos
+# Librería de Operaciones con Vectores y Matrices Complejos
  
 ## Descripción 📑
 ---
@@ -213,7 +213,7 @@ Para mayor información sobre los temas descritos en este proyecto se recomienda
 
 ## Autor ✒️
 ---
-Este proyecto es de la autoría de ***Jesús Alfonso Pinzón Vega***, Ingeniero de Sistemas de la Escuela Colombiana de Ingeniería Julio Garavito (ECIJG).  
+Este proyecto es de la autoría de ***Jesús Alfonso Pinzón Vega***, Ingeniero de Sistemas de la Escuela Colombiana de Ingeniería Julio Garavito ([ECIJG](https://www.escuelaing.edu.co/es/)). 
 **Correo:** jesus.pinzon-v@mail.escuelaing.edu.co
 
 ## Licencia 📄
